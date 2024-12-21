@@ -162,11 +162,12 @@ main {
     padding: 10px 20px;
     border: 1px solid #fff;
     border-radius: 25px;
-    transition: background-color 0.3s, color 0.3s;
+    transition: transform 0.3s, background-color 0.3s, color 0.3s;
 }
 .buttons a:hover {
     background-color: #E50914;
     border-color: #E50914;
+    transform: scale(1.1);
 }
 
 /* Haftalık Film Önerisi */
@@ -193,6 +194,11 @@ main {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
     width: 100%;
     max-width: 1000px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.movie:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.9);
 }
 .movie img {
     width: 150px;
@@ -211,6 +217,23 @@ main {
     font-size: 16px;
     color: #ccc;
     margin: 5px 0;
+}
+.movie-buttons {
+    margin-top: 10px;
+}
+.movie-buttons button {
+    margin-right: 10px;
+    padding: 5px 15px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #E50914;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.movie-buttons button:hover {
+    background-color: #d40812;
 }
 
 /* Yardım baloncuğu */

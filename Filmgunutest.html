@@ -225,6 +225,23 @@
             color: #ccc;
             margin: 5px 0;
         }
+        .movie-buttons {
+            margin-top: 10px;
+        }
+        .movie-buttons button {
+            margin-right: 10px;
+            padding: 5px 15px;
+            font-size: 14px;
+            color: #fff;
+            background-color: #E50914;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .movie-buttons button:hover {
+            background-color: #d40812;
+        }
 
         /* Yardım baloncuğu */
         .help-bubble {
@@ -305,7 +322,11 @@
                         <h3>The Dark Knight</h3>
                         <p><strong>IMDB Puanı:</strong> 9.0</p>
                         <p><strong>Ekibimizin Puanı:</strong> 9.5</p>
-                        <p><em>"Müthiş bir senaryo, etkileyici oyunculuklar ve unutulmaz bir atmosfer. Kesinlikle izlenmeli!"</em></p>
+                        <p><em id="review-dark-knight">"Müthiş bir senaryo, etkileyici oyunculuklar ve unutulmaz bir atmosfer. Kesinlikle izlenmeli!"</em></p>
+                        <div class="movie-buttons">
+                            <button data-movie="dark-knight" data-review="Tan" onclick="changeReview(this)">Tan</button>
+                            <button data-movie="dark-knight" data-review="Aytaç" onclick="changeReview(this)">Aytaç</button>
+                        </div>
                     </div>
                 </div>
                 <div class="movie">
@@ -314,7 +335,11 @@
                         <h3>Inception</h3>
                         <p><strong>IMDB Puanı:</strong> 8.8</p>
                         <p><strong>Ekibimizin Puanı:</strong> 9.3</p>
-                        <p><em>"Zekice kurgulanmış bir hikaye, büyüleyici görsellik. Mutlaka izlenmesi gereken bir film."</em></p>
+                        <p><em id="review-inception">"Zekice kurgulanmış bir hikaye, büyüleyici görsellik. Mutlaka izlenmesi gereken bir film."</em></p>
+                        <div class="movie-buttons">
+                            <button data-movie="inception" data-review="Tan" onclick="changeReview(this)">Tan</button>
+                            <button data-movie="inception" data-review="Aytaç" onclick="changeReview(this)">Aytaç</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -346,12 +371,44 @@
     window.addEventListener('load', () => {
         setTimeout(() => {
             const loadingScreen = document.getElementById('loading-screen');
-            const content = document.getElementById('content');
-            loadingScreen.style.display = 'none';
-            content.style.display = 'block';
-        }, 2000);
-    });
-</script>
 
+            if (loadingScreen) {
+                loadingScreen.style.display = 'none';
+            }
+            const content = document.getElementById('content');
+            if (content) {
+                content.style.display = 'block';
+            }
+        }, 2000); // 2 saniye
+    });
+
+    // İnceleme metnini değiştirme işlevi
+    function changeReview(button) { 
+        const movie = button.dataset.movie;
+        const reviewAuthor = button.dataset.review;
+        let newReview = "";
+
+        // Yorumları tanımlama
+        if (movie === "dark-knight") {
+            if (reviewAuthor === "Tan") {
+                newReview = "Christopher Nolan'ın Batman üçlemesindeki zirve noktası. Heath Ledger'ın Joker performansı unutulmaz.";
+            } else if (reviewAuthor === "Aytaç") {
+                newReview = "Efsane bir suç draması. Aksiyon sahneleri ve karakter gelişimi muhteşem.";
+            }
+        } else if (movie === "inception") {
+            if (reviewAuthor === "Tan") {
+                newReview = "Bir rüyanın içinde başka bir rüya! İzleyiciyi sürekli düşündüren bir başyapıt.";
+            } else if (reviewAuthor === "Aytaç") {
+                newReview = "Bilim kurgu ve psikolojik gerilim sevenler için mükemmel bir seçenek.";
+            }
+        }
+
+        // Yorum metnini güncelle
+        const reviewElement = document.getElementById(`review-${movie}`);
+        if (reviewElement) {
+            reviewElement.textContent = newReview;
+        }
+    }
+</script>
 </body>
 </html>
