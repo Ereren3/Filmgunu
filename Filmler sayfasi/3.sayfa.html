@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmgunu</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #0f0f0f, #3c1c1c);
+            color: #fff;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Yükleme ekranı */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .clapperboard {
+            width: 100px;
+            height: 100px;
+            background-color: #222;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            animation: bounce 1s infinite ease-in-out;
+        }
+
+        .clapperboard::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background: linear-gradient(135deg, #444 25%, #fff 25%, #fff 50%, #444 50%, #444 75%, #fff 75%);
+            background-size: 30px 30px;
+            animation: shake 0.5s infinite ease-in-out;
+        }
+
+        .clapperboard::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(-5deg);
+            }
+        }
+
+        header {
+            background-color: rgba(20, 20, 20, 0.8);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            color: #E50914;
+            font-size: 28px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #E50914;
+        }
+
+        main {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 80px 50px;
+        }
+
+        .main-left {
+            flex: 2;
+            text-align: center;
+        }
+
+        .main-left img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .main-center {
+            flex: 3;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .main-title {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #E50914;
+        }
+
+        .description {
+            font-size: 20px;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+
+        .reviews {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .reviews span {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .main-right {
+            flex: 1;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .main-right h3 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #E50914;
+        }
+
+        .main-right p {
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .rating {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            font-size: 22px;
+            color: gold;
+        }
+
+        .rating span {
+            font-size: 24px;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Yükleme Ekranı -->
+<div id="loading-screen">
+    <div class="clapperboard"></div>
+    <div class="loading-text">Filmler Yükleniyor...</div>
+</div>
+
+<!-- İçerik -->
+<div id="content" style="display: none;">
+    <header>
+        <div class="logo">Filmgunu</div>
+        <nav>
+            <a href="#">Ana Sayfa</a>
+            <a href="#">Filmler</a>
+            <a href="#">Diziler</a>
+            <a href="#">Rastgele Film</a>
+        </nav>
+        <nav>
+            <a href="#">Üye Ol</a>
+            <a href="#">Giriş Yap</a>
+        </nav>
+    </header>
+    <main>
+        <!-- Sol taraf: Film resmi -->
+        <div class="main-left">
+            <img src="https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_FMjpg_UX1000_.jpg" alt="Film Posteri">
+        </div>
+
+        <!-- Orta: Film bilgileri -->
+        <div class="main-center">
+            <h1 class="main-title">Inception</h1>
+            <p class="description">Bu film, bilinçaltında geçen karmaşık bir hikayeyi anlatıyor. Dom Cobb, insanların rüyalarına girip sırlarını çalan bir hırsızdır. Ancak bu defa farklı bir görev alır: Bir fikri yerleştirmek. Inception, büyüleyici görseller ve derin bir hikaye sunar.</p>
+            <div class="reviews">
+                <span><strong>Tanın Yorumu:</strong> Filmdeki görseller çok etkileyici, hikaye akıcı ve sürükleyiciydi.</span>
+                <span><strong>Aytaçın Yorumu:</strong> Hikaye güçlü, oyunculuk harika. Film son derece etkileyici bir deneyim sundu.</span>
+            </div>
+        </div>
+
+        <!-- Sağ taraf: Puanlar -->
+        <div class="main-right">
+            <h3>IMDb Puanı</h3>
+            <div class="rating">
+                <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9734;</span>
+            </div>
+            <p>8.5/10</p>
+            <h3>Ekip Puanı</h3>
+            <h4>Tanın Puanı</h4>
+            <div class="rating">
+                <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span>
+            </div>
+            <p>7/10</p>
+            <h4>Aytaçın Puanı</h4>
+            <div class="rating">
+                <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9734;</span><span>&#9734;</span>
+            </div>
+            <p>8/10</p>
+        </div>
+    </main>
+</div>
+
+<script>
+    // 2 saniye bekledikten sonra yükleme ekranını kaldır
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const loadingScreen = document.getElementById('loading-screen');
+
+            if (loadingScreen) {
+                loadingScreen.style.display = 'none';
+            }
+            const content = document.getElementById('content');
+            if (content) {
+                content.style.display = 'block';
+            }
+        }, 2000); // 2 saniye
+    });
+</script>
+</body>
+</html>
