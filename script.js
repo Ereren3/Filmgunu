@@ -10,7 +10,7 @@ window.addEventListener('load', () => {
       if (content) {
           content.style.display = 'block';
       }
-  }, 1000); // 2 saniye
+  }, 500); // 1 saniye
 });
 
 // İnceleme metnini değiştirme işlevi
