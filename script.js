@@ -40,3 +40,47 @@ function changeReview(button) {
       reviewElement.textContent = newReview;
   }
 }
+    // Modalları aç ve kapat
+    function openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.style.display = 'flex';
+        }
+    }
+
+    function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    function switchToLogin() {
+        closeModal('signup-modal');
+        openModal('login-modal');
+    }
+
+    function switchToSignup() {
+        closeModal('login-modal');
+        openModal('signup-modal');
+    }
+
+    // Modal butonları için event listenerlar
+    document.getElementById('signup').addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal('signup-modal');
+    });
+
+    document.getElementById('login').addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal('login-modal');
+    });
+
+    // Modal dışına tıklanınca kapatma
+    document.querySelectorAll('.modal').forEach((modal) => {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) { // Sadece modalın kendisi tıklanınca kapat
+                closeModal(modal.id);
+            }
+        });
+    });
