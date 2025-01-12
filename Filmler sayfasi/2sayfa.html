@@ -21,14 +21,37 @@
         <nav>
             <a href="#">Ana Sayfa</a>
             <a href="#">Filmler</a>
-            <a href="#">Diziler</a>
             <a href="#">Rastgele Film</a>
         </nav>
         <nav>
-            <a href="#">Üye Ol</a>
-            <a href="#">Giriş Yap</a>
+            <a href="#" id="signup">Üye Ol</a>
+            <a href="#" id="login">Giriş Yap</a>
         </nav>
     </header>
+
+     <!-- Üye Ol Modal -->
+     <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <h2>Üye Ol</h2>
+            <input type="text" placeholder="Ad Soyad">
+            <input type="email" placeholder="E-posta">
+            <input type="password" placeholder="Şifre">
+            <button>Üye Ol</button>
+            <p style="margin-top: 10px; color: #ccc; font-size: 14px;">Zaten üye misiniz? <a href="#" onclick="switchToLogin()" style="color: #E50914; text-decoration: none;">Giriş Yap</a></p>
+        </div>
+    </div>
+
+    <!-- Giriş Yap Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <h2>Giriş Yap</h2>
+            <input type="email" placeholder="E-posta">
+            <input type="password" placeholder="Şifre">
+            <button>Giriş Yap</button>
+            <p style="margin-top: 10px; color: #ccc; font-size: 14px;">Üyeliğiniz yok mu? <a href="#" onclick="switchToSignup()" style="color: #E50914; text-decoration: none;">Üye Ol</a></p>
+        </div>
+    </div>
+    
     <main>
         <h1 class="main-title">Film Türleri</h1>
         <div class="genre-section">
