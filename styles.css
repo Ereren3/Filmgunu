@@ -140,6 +140,15 @@ main {
     align-items: center;
 }
 
+.sayfa1-main {
+    text-align: center;
+    padding: 50px 20px;
+    display: flow;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .sayfa4-main{
     display: flex;
     flex-direction: row;
