@@ -177,7 +177,7 @@ main {
     text-align: center;
 }
 .main-title {
-    font-size: 42px;
+    font-size: 48px;
     margin-bottom: 20px;
     color: #E50914;
 }
@@ -322,6 +322,27 @@ main {
 .movie-buttons button:hover {
     background-color: #d40812;
 }
+.sayfa3-movie {
+    display: flex;
+    align-items: center;
+    background-color: #1c1c1c;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    width: 30%;
+    max-width: 300px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.action-container {
+    display: flex;
+    justify-content: space-around; /* Aralarını açar */
+    align-items: center; /* Dikey hizalama */
+    flex-wrap: wrap; /* Taşarsa alt satıra geçer */
+    padding: 20px;
+    
+}
+
 
 /* Yardım baloncuğu */
 .help-bubble {
